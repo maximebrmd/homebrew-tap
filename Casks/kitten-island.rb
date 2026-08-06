@@ -1,6 +1,6 @@
 cask "kitten-island" do
-  version "0.1.5"
-  sha256 "5144dfe5d511f9aa665e5e3dc0bc2051b95a8391eada02ac32b51a29df24fb4b"
+  version "0.1.6"
+  sha256 "0f530ba646734f79cd7380737e621112e1f734a585c418567ccb82e4970d7948"
 
   url "https://github.com/maximebrmd/homebrew-tap/releases/download/kitten-island-#{version}/KittenIsland-#{version}.dmg",
       verified: "github.com/maximebrmd/homebrew-tap/"
