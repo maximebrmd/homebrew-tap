@@ -14,7 +14,7 @@ cask "kitten-island" do
     strategy :github_releases
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "KittenIsland.app"
 
