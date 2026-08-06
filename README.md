@@ -15,13 +15,14 @@ exact terminal, and lets you approve, deny, or answer — without leaving what y
 Native Swift, no Electron, near-zero idle CPU.
 
 ```sh
-brew install --cask --no-quarantine maximebrmd/tap/kitten-island
+brew install --cask maximebrmd/tap/kitten-island
+xattr -dr com.apple.quarantine /Applications/KittenIsland.app
 ```
 
-> `--no-quarantine` is required. KittenIsland is ad-hoc signed rather than notarized by Apple, so
-> Gatekeeper refuses to open it after a normal install. If you already installed it without the
-> flag, clear it once with
-> `xattr -dr com.apple.quarantine /Applications/KittenIsland.app`.
+> The second line is required. KittenIsland is ad-hoc signed rather than notarized by Apple, so
+> Gatekeeper refuses to open it — `spctl` rejects the bundle until the quarantine flag is cleared.
+> Homebrew quarantines every cask and no longer offers a flag to opt out, so you need this after
+> each install or upgrade.
 
 KittenIsland is a **menu-bar app** — no Dock icon. Look for the pixel cat in your menu bar.
 

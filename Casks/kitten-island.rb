@@ -29,14 +29,13 @@ cask "kitten-island" do
   ]
 
   caveats <<~EOS
-    KittenIsland is ad-hoc signed, not notarized by Apple. Gatekeeper will refuse to
-    open it after a normal install. Install it without the quarantine flag:
-
-      brew install --cask --no-quarantine maximebrmd/tap/kitten-island
-
-    If you already installed it the normal way, clear the flag once:
+    KittenIsland is ad-hoc signed, not notarized by Apple, so Gatekeeper will refuse
+    to open it. Clear the quarantine flag once, now:
 
       xattr -dr com.apple.quarantine /Applications/KittenIsland.app
+
+    Homebrew quarantines every cask and no longer offers a flag to opt out, so this
+    step is required after each install or upgrade.
 
     KittenIsland is a menu-bar app — it has no Dock icon. Look for the pixel cat in
     your menu bar, and for the panel in your notch.
