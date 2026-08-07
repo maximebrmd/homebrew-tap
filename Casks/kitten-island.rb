@@ -40,12 +40,19 @@ cask "kitten-island" do
     KittenIsland is a menu-bar app — it has no Dock icon. Look for the pixel cat in
     your menu bar, and for the panel in your notch.
 
-    It needs Accessibility and Automation permission to locate your terminal and send
-    keystrokes to it. macOS will prompt on first use.
+    Jumping to a terminal pane needs no permission for WezTerm or tmux. iTerm2 and
+    Terminal.app ask for Automation the first time; macOS prompts you. Accessibility
+    is never required — keystrokes go to one pane through that terminal's own
+    command-line interface, never as system-wide input.
 
-    Before uninstalling, open Settings -> Integrations and remove the agent hooks.
-    KittenIsland installs observer hooks into ~/.claude, ~/.codex, ~/.pi and friends;
-    `brew uninstall` cannot reach into those files, and `zap` deliberately does not
-    touch your agent configs.
+    To follow your Claude Code sessions, KittenIsland adds marked, backed-up entries
+    to ~/.claude/settings.json: lifecycle observers, plus a statusLine for the 5h/7d
+    usage percentages. No other agent's config is touched, and the extra agents under
+    Settings -> Integrations stay off until you switch them on.
+
+    `brew uninstall` cannot reach into that file and `zap` deliberately leaves agent
+    configs alone, so remove those entries before uninstalling: turn off
+    Settings -> Usage, then delete any remaining hook entry whose command contains
+    `kitten-hook`.
   EOS
 end
