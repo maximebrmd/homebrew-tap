@@ -45,14 +45,23 @@ cask "kitten-island" do
     is never required — keystrokes go to one pane through that terminal's own
     command-line interface, never as system-wide input.
 
-    To follow your Claude Code sessions, KittenIsland adds marked, backed-up entries
-    to ~/.claude/settings.json: lifecycle observers, plus a statusLine for the 5h/7d
-    usage percentages. No other agent's config is touched, and the extra agents under
-    Settings -> Integrations stay off until you switch them on.
+    KittenIsland writes nothing into any agent's configuration until you ask it to.
+    Claude Code, Codex and Pi are detected by reading the session files they already
+    write. Settings -> Integrations carries a switch that merges six lifecycle
+    observer entries into ~/.claude/settings.json so the notch notices a session
+    sooner; it starts off, and the usage status line under Settings -> Usage is gated
+    by it. Every switch names the exact file it writes, the file is backed up and
+    validated before it is changed, and hooks belonging to other tools are left as
+    they were.
 
-    `brew uninstall` cannot reach into that file and `zap` deliberately leaves agent
-    configs alone, so remove those entries before uninstalling: turn off
-    Settings -> Usage, then delete any remaining hook entry whose command contains
-    `kitten-hook`.
+    Upgrading from an earlier build? Those entries used to be added on every launch
+    without asking. This build takes them back out on first launch and tells you so.
+
+    Turning a switch off is the removal, and it sticks. To be rid of all of it at
+    once, use About -> Remove Everything KittenIsland Installed, which also deletes
+    ~/.kitten-island and the kitten-hook helper your agents run, then quits. Do that
+    BEFORE you delete the app: the helper lives outside the app bundle, so moving
+    KittenIsland to the Trash leaves it running. `brew uninstall` cannot reach into
+    an agent's config, and `zap` deliberately leaves them alone.
   EOS
 end
